@@ -5,18 +5,18 @@ import "./ERC721Connector.sol";
 
 contract NFTMarketplace is ERC721Connector {
 
-    string[] public kryptoBirdz;
-    mapping(string => bool) kryptoBirdzExist;
+    string[] public nfts;
+    mapping(string => bool) nftsExist;
 
     constructor() ERC721Connector("NFTMarketplace", "NTFMRKTPLC") {}
 
-    function mint(string memory _kryptobird) public {
-        require(!kryptoBirdzExist[_kryptobird], "NFTMarketplace: Kryptobird already exists");
-        kryptoBirdz.push(_kryptobird);
+    function mint(string memory _nft) public {
+        require(!nftsExist[_nft], "NFTMarketplace: Kryptobird already exists");
+        nfts.push(_nft);
         // .push does not return length of array anymore
-        uint id = kryptoBirdz.length - 1;
+        uint256 id = nfts.length - 1;
         _mint(msg.sender, id);
-        kryptoBirdzExist[_kryptobird] = true;
+        nftsExist[_nft] = true;
     }
 
 
